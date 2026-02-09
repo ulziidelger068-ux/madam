@@ -1,1 +1,71 @@
-# madam
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<title>Надад хариу өгөөч 💖</title>
+<style>
+  body {margin: 0; height: 100vh; background: linear-gradient(135deg, #fbc2eb, #a6c1ee);display: flex;align-items:center;justify-content: center;font-family: Arial, sans-serif;overflow: hidden;
+  }
+  .card {background: white;padding: 30px;border-radius: 25px;text-align: center;width: 320px;box-shadow: 0 10px 30px rgba(0,0,0,0.25);z-index: 2;}
+  img {width: 130px;border-radius: 20px;margin-bottom: 15px;}
+  h2 {margin-bottom: 20px;}
+  button {padding: 12px 22px;border: none;border-radius: 25px;font-size: 16px;cursor: pointer;margin: 10px;}
+  #yes {background: #ff5fa2;color: white;}
+  #no {background: #8b5cf6;color: white;position: absolute;}
+
+  .emoji {position: absolute;font-size: 28px;animation: float 2s linear forwards;}
+  @keyframes float {from { transform: translateY(0); opacity: 1; }to { transform: translateY(-180px); opacity: 0; }}
+
+  .firework {position: absolute;width: 8px;height: 8px;background: transparent;border-radius: 50%;box-shadow:0 -30px #ff5fa2,21px -21px #facc15,30px 0 #34d399,21px 21px #60a5fa,0 30px #f472b6,-21px 21px #c084fc,-30px 0 #fb7185,-21px -21px #fcd34d;animation: boom 1s ease-out forwards;}
+  @keyframes boom {from { transform: scale(0); opacity: 1; }to { transform: scale(1.5); opacity: 0; }}
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="https://i.imgur.com/8Km9tLL.jpg"><h2>Миний Madam Jii болооч? 💖</h2><button id="yes">Тийм 💘</button><button id="no">Үгүй 😭</button>
+</div>
+<script>
+const noBtn = document.getElementById("no") let speed = 1;
+
+// ❌ ҮГҮЙ → улам хурдан зугтана
+function moveNo() {speed += 0.5;const x = Math.random() * (window.innerWidth - 100);const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.transition = all ${0.15 / speed}s linear;
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+// ✅ ТИЙМ → fireworks + emoji + НЭРТЭЙ message
+document.getElementById("yes").onclick = () => {
+
+  // emoji float
+  for (let i = 0; i < 20; i++) {
+    const e = document.createElement("div");
+    e.className = "emoji";
+    e.innerHTML = ["💖","💕","😻","💘"][Math.floor(Math.random()*4)];
+    e.style.left = Math.random() * window.innerWidth + "px";
+    e.style.top = window.innerHeight - 60 + "px";
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 2000);
+  }
+
+  // fireworks
+  for (let i = 0; i < 5; i++) {
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.style.left = Math.random() * window.innerWidth + "px";
+    f.style.top = Math.random() * window.innerHeight + "px";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
+  }
+
+  setTimeout(() => {
+    alert("🥰 хашаааааа,\nЧиний “Тийм” миний өдрийг аврав 💖\nХамгийн хөөрхөн хариу байлаа!");
+  }, 600);
+};
+</script>
+
+</body>
+</html>
